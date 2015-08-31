@@ -124,6 +124,7 @@ BOARD_BLUEDROID_VENDOR_CONF := device/lge/f6mt/bluetooth/libbt_vndcfg.txt
 
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
+TARGET_NO_RPC := true
 
 # FM
 QCOM_FM_ENABLED := true
