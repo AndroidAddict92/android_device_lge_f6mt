@@ -1,29 +1,20 @@
-#
-# Copyright (C) 2012 The Android Open-Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+ifneq (,$(filter $(QCOM_BOARD_PLATFORMS),$(TARGET_BOARD_PLATFORM)))
 
-# WARNING: Everything listed here will be built on ALL platforms,
-# including x86, the emulator, and the SDK.  Modules must be uniquely
-# named (liblights.tuna), and must build everywhere, or limit themselves
-# to only building on ARM if they include assembly. Individual makefiles
-# are responsible for having their own logic, for fine-grained control.
+ifeq ($(TARGET_GPS_HAL_PATH),)
 
-LOCAL_PATH := $(call my-dir)
+ifeq ($(call my-dir),$(call project-path-for,qcom-gps))
 
-ifeq ($(BOARD_VENDOR),LGE)
-ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
-include $(call all-subdir-makefiles,$(LOCAL_PATH))
+ifneq ($(filter msm8960 apq8064 ,$(TARGET_BOARD_PLATFORM)),)
+    #For msm8960/apq8064 targets
+    include $(call all-named-subdir-makefiles,msm8960)
+else
+    #For all other targets
+    GPS_DIRS=core utils loc_api platform_lib_abstractions etc
+    include $(call all-named-subdir-makefiles,$(GPS_DIRS))
+endif #TARGET_BOARD_PLATFORM
+
 endif
+
+endif
+
 endif
