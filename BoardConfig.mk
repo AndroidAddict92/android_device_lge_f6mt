@@ -163,27 +163,7 @@ BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/f6mt/vibrator/tspdrv.c
 # Web
 WEBRTC_BUILD_NEON_LIBS := true
 
-BOARD_SEPOLICY_DIRS := \
-       device/lge/f6mt/sepolicy
+# sepolicy
 
-BOARD_SEPOLICY_UNION := \
-       app.te \
-       bluetooth.te \
-       device.te \
-       domain.te \
-       drmserver.te \
-       file.te \
-       file_contexts \
-       hci_init.te \
-       init_shell.te \
-       keystore.te \
-       mediaserver.te \
-       kickstart.te \
-       nfc.te \
-       rild.te \
-       surfaceflinger.te \
-       system.te \
-       ueventd.te \
-       wpa.te
-
+include device/qcom/sepolicy/sepolicy.mk
 
