@@ -22,7 +22,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(BOARD_VENDOR),ZTE)
+ifeq ($(BOARD_VENDOR),LGE)
 ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
